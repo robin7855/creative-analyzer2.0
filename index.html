@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>광고 소재 효율 분석 도구</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>광고 소재 효율 분석 도구</h1>
+        <p>
+          좌측에는 고효율로 추정되는 광고 소재, 우측에는 저효율로 추정되는 광고 소재를 업로드한 뒤
+          생성형 AI 분석을 실행하세요.
+        </p>
+      </header>
+
+      <section class="settings card">
+        <h2>AI 설정</h2>
+        <div class="settings-grid">
+          <label>
+            API Base URL
+            <input id="apiBase" type="text" value="https://api.openai.com/v1" />
+          </label>
+          <label>
+            모델명
+            <input id="model" type="text" value="gpt-4.1-mini" />
+          </label>
+          <label class="api-key">
+            API Key
+            <input id="apiKey" type="password" placeholder="sk-..." />
+          </label>
+        </div>
+      </section>
+
+      <section class="compare-layout">
+        <article class="card panel">
+          <h2>고효율 소재 (좌측)</h2>
+          <label class="uploader" for="highInput">
+            <input id="highInput" type="file" accept="image/*" />
+            <span>이미지 업로드</span>
+          </label>
+          <img id="highPreview" class="preview" alt="고효율 소재 미리보기" />
+          <textarea
+            id="highMemo"
+            rows="4"
+            placeholder="참고 메모(타겟, 오퍼, 캠페인 목적 등)를 입력하면 분석 품질이 좋아집니다."
+          ></textarea>
+        </article>
+
+        <article class="card panel">
+          <h2>저효율 소재 (우측)</h2>
+          <label class="uploader" for="lowInput">
+            <input id="lowInput" type="file" accept="image/*" />
+            <span>이미지 업로드</span>
+          </label>
+          <img id="lowPreview" class="preview" alt="저효율 소재 미리보기" />
+          <textarea
+            id="lowMemo"
+            rows="4"
+            placeholder="참고 메모(실제 CTR/CVR 수치 등)를 입력하면 분석 품질이 좋아집니다."
+          ></textarea>
+        </article>
+      </section>
+
+      <section class="actions">
+        <button id="analyzeBtn">AI 분석 실행</button>
+      </section>
+
+      <section class="card">
+        <h2>분석 결과</h2>
+        <p class="help">
+          결과에는 핵심 차이점, 퍼포먼스 저하 원인 가설, 개선 액션 아이템이 포함됩니다.
+        </p>
+        <pre id="result" class="result">아직 분석 전입니다.</pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
